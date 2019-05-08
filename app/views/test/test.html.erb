@@ -1,0 +1,18 @@
+<h1>Test.html</h1>
+<table border=1>
+<tr><th>username</th><th>email</th><th>activated?</th></tr>
+<% @users.each do |u| %>
+    <tr>
+    <td><%= u.username %></td>
+    <td><%= u.email %></td>
+    <td><%= u.activated? %></td>
+    </tr>
+<% end %>
+</table>
+
+
+<% if flash[:error] %>
+  <div class="notification is-danger global-notification">
+    <p class="error">error: <%= flash[:error] %></p>
+  </div>
+<% end %>
