@@ -1,5 +1,6 @@
 <h1>Band Search</h1>
-Search for: <%= params[:band_name].titleize %>
+Search for: <%= params[:band_name].titleize %><br>
+Total Tracks: <%= @tracks.count %>
 <% if params[:render] %>
     <table border=1>
     <tr><th>track title</th><th>album</th><th>URI</th></tr>
