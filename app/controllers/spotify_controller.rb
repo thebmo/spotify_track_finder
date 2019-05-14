@@ -1,5 +1,3 @@
-require 'rspotify'
-
 include Spotify::Spotify
 
 class SpotifyController < ApplicationController
