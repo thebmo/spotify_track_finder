@@ -3,13 +3,13 @@ Search for: <%= params[:band_name].titleize %><br>
 Total Tracks: <%= @tracks.count %>
 <% if params[:render] %>
     <table border=1>
-    <tr><th>track title</th><th>album</th><th>URI</th></tr>
+    <tr><th>artist</th><th>track title</th><th>album</th><th>URI</th></tr>
     <% @tracks.each do |track| %>
-        <% t = track[1] %>
         <tr>
-        <td><%= t.name %></td>
-        <td><%= t.album.name %></td>
-        <td><%= t.uri %></td>
+        <td><%= track.artists.first.name %></td>
+        <td><%= track.name %></td>
+        <td><%= track.album.name %></td>
+        <td><%= track.uri %></td>
         </tr>
     <% end %>
    </table>
