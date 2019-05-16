@@ -41,6 +41,12 @@ module Spotify::Spotify
 
   private
 
+  # returns an array of requested type resource objects for a given object
+  # ex: resources_for_object(album, :tracks) => returns [Array<Tracks>]
+  #
+  # @param obj           [Object] the class object to request resource for
+  # @param resource_type [Symbol] the type of resource we want to request as a symbol
+  # @return all_recouces [Array<Objects>] an array of the requested resource objects
   def resources_for_object(obj, resource_type)
     all_resources = []
 
