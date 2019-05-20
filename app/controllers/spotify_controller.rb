@@ -1,6 +1,14 @@
 include Spotify::Spotify
 
 class SpotifyController < ApplicationController
+  def sign_in
+  end
+
+  def callback
+    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    @req = request.env['omniautgh']
+  end
+
   def list_tracks
     if !!params[:band_name]
       band_name = params[:band_name].titleize
