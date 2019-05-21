@@ -1,12 +1,14 @@
 include Spotify::Spotify
 
 class SpotifyController < ApplicationController
+
+  # renders the template to auth a user
   def sign_in
   end
 
   def callback
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    @req = request.env['omniautgh']
+    @req = request.env['omniauth.auth']
   end
 
   def list_tracks
