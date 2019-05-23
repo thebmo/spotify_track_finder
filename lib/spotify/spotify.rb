@@ -3,7 +3,7 @@ require 'rspotify'
 
 module Spotify::Spotify
   REGION = "US".freeze
-  SCOPES = 'user-read-private user-read-email'.freeze
+  SCOPES = 'user-read-private user-read-email playlist-modify-public playlist-modify-private'.freeze
   LIMIT  = 50.freeze
 
   CLIENT_ID = ENV['SPOTIFY_CLIENT_ID'].freeze
