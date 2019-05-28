@@ -12,9 +12,7 @@ module Spotify::Spotify
 
   RSpotify.authenticate(CLIENT_ID, CLIENT_SECRET)
 
-  # to find all spotify artist tracks
-  # this needs to filter by artist id
-  # this seems to limit by 20a
+  # @TODO 5.25.2019 needs to filter by artist id
   # @param band_name [String] the band name as a string
   # @return [Hash<<Symbol, Track>] a hash of track objects by id
   def find_all_tracks(band_name)
