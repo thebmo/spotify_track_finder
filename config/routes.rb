@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/test', to: 'test#test', as: 'users_test'
   get '/spotify/sign_in', to: 'spotify#sign_in', as: 'spotify_sign_in'
   get '/auth/spotify/callback', to: 'spotify#callback', as: 'auth_spotify_callback'
-  get '/tracks', to: 'spotify#list_tracks', as: 'spotify_tracks'
+  get '/band_tracks', to: 'spotify#band_tracks', as: 'band_tracks'
 end
