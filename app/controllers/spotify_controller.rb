@@ -16,7 +16,13 @@ class SpotifyController < ApplicationController
     end
   end
 
-  def list_tracks
+  def user_playlists
+  end
+
+  def playlist
+  end
+
+  def band_tracks
     if !!params[:band_name]
       band_name = params[:band_name].titleize
     else
