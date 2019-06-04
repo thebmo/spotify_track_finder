@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/band_tracks', to: 'spotify#band_tracks', as: 'band_tracks'
 
   #sessions controller
-  get    '/login/', to: 'sessions#new'
+  get    '/login', to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 end
