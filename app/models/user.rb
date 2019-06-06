@@ -14,4 +14,9 @@ class User < ApplicationRecord
   def spotify_user
     @spotify_user ||= RSpotify::User.new(spotify_hash)
   end
+
+  # TODO 6.4.2019: add salt hashing
+  def authenticate(given_password)
+    given_password == self.password
+  end
 end
