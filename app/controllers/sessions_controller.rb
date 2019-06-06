@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
 
     # TODO 6.4.2019: authenticate password
-    if user # && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password])
       # login and redirect
       # TODO 6.4.2019: update redirect path
       #   add a previous_url redirect else index
