@@ -6,9 +6,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get create" do
-    get users_create_url
-    assert_response :success
+
+  test "should sanatize email" do
   end
 
+  test "should validate password complexity" do
+  end
+
+  test "should verify passwords match" do
+  end
 end
