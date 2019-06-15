@@ -16,10 +16,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                         :region           => 'US' } }.freeze
   end
 
-
   test "should redirect on success" do
     post users_new_path, params: params
     assert_redirected_to users_test_path
+  end
+
+  test "should not allow duplicate emails" do
+    dupe = params
+    dupe[:user][:email] = "my_string1@test.com"
+
+    post users_new_path, params: dupe
+
+    assert_response :success
+    assert_equal "Email already registered", flash[:danger]
   end
 
   test "should validate password complexity" do
