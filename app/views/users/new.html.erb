@@ -1,0 +1,31 @@
+<%= render :partial => 'header' %>
+
+<center><h1>Create Account</h1></center>
+
+<div class="containter">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for :user, url: users_new_path do |f| %>
+        <%= f.label :email %>
+        <%= f.email_field :email, :value => @email, class: 'form-control' %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirm %>
+        <%= f.password_field :password_confirm, class: 'form-control' %>
+
+        <%= f.label :region %>
+        <%= f.select :region, ['US', 'BR', 'JP'], :selected => @region %>
+
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if flash[:danger] %>
+    <div class="row notification is-danger global-notification justify-content-md-center">
+      <p class="error">error: <%= flash[:danger] %></p>
+    </div>
+  <% end %>
+</div>
