@@ -22,16 +22,21 @@ class UsersController < ApplicationController
     elsif !validate_password(params[:user][:password])
       flash.now[:danger] = "Passwords must contain at least one capital and lower case leter, number, and symbol"
     else
-      # create new user and redirect!
-      User.transaction do
-        user = User.create(
-          email: "bmosier@gmail.com",
-          password: params[:user][:password])
-        log_in(user)
-      end
+      begin
+        # create new user and redirect!
+        User.transaction do
+          user = User.create(
+            email: params[:user][:email],
+            password: params[:user][:password],
+            activated: false)
+          log_in(user)
 
-      redirect_to users_test_path
-      return
+          redirect_to users_test_path
+          return
+        end
+      rescue => e
+        flash.now[:danger] = e.message
+      end
     end
 
     render 'new'
