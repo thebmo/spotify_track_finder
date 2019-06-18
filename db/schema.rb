@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_152134) do
+ActiveRecord::Schema.define(version: 2019_06_18_163434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.string "email"
     t.boolean "activated"
     t.datetime "created_at", null: false
@@ -24,9 +23,10 @@ ActiveRecord::Schema.define(version: 2019_05_23_152134) do
     t.string "password"
     t.string "remote_id"
     t.json "spotify_hash"
+    t.string "region"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remote_id"], name: "index_users_on_remote_id", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

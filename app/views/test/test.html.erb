@@ -5,12 +5,12 @@
 <div class="m-1">
   <h2>All Users</h2>
   <table border=1>
-   <tr><th>username</th><th>email</th><th>activated?</th></tr>
+   <tr><th>email</th><th>activated?</th><th>admin</th</tr>
     <% @users.each do |u| %>
       <tr>
-        <td><%= u.username %></td>
         <td><%= u.email %></td>
         <td><%= u.activated? %></td>
+        <td><%= u.admin %></td>
       </tr>
     <% end %>
   </table>
@@ -21,9 +21,8 @@
 
   <% if current_user %>
     <table border=1>
-      <tr><th>username</th><th>email</th><th>activated?</th></tr>
+      <tr><th>email</th><th>activated?</th></tr>
       <tr>
-        <td><%= current_user.username %></td>
         <td><%= current_user.email %></td>
         <td><%= current_user.activated? %></td>
       </tr>
