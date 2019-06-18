@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: my_string1@test.com
   email: my_string1@test.com
   activated: false
 
 two:
-  username: my_string2@test.com
   email: my_string2@test.com
   activated: false

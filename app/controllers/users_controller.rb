@@ -28,6 +28,7 @@ class UsersController < ApplicationController
           user = User.create(
             email: params[:user][:email],
             password: params[:user][:password],
+            region: params[:user][:region],
             activated: false)
           log_in(user)
 
