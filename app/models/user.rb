@@ -3,7 +3,15 @@ class User < ApplicationRecord
 
   def initialize(*args)
     args.first[:email] = args.first[:email].downcase
-    # TODO 6.17.2019: Salt Passwords on Creation:
+
+    # generate and add salt to model arguments
+    salt = BCrypt::Engine.generate_salt
+    args.first[:salt] = salt
+
+    # create new salted and hashed password
+    password = BCrypt::Engine.hash_secret(args.first[:password], salt)
+    args.first[:password] = password
+
     super(*args)
   end
 
@@ -20,8 +28,7 @@ class User < ApplicationRecord
     @spotify_user ||= RSpotify::User.new(spotify_hash)
   end
 
-  # TODO 6.4.2019: add salt hashing
   def authenticate(given_password)
-    given_password == self.password
+    BCrypt::Engine.hash_secret(given_password, self.salt) == self.password
   end
 end
