@@ -4,12 +4,12 @@ class User < ApplicationRecord
   def initialize(*args)
     args.first[:email] = args.first[:email].downcase
 
-    # generate and add salt to model arguemns
-    salt = SecureRandom.hex(32)
+    # generate and add salt to model arguments
+    salt = BCrypt::Engine.generate_salt
     args.first[:salt] = salt
 
     # create new salted and hashed password
-    password = BCrypt::Password.create(salt + args.first[:password]).to_s
+    password = BCrypt::Engine.hash_secret(args.first[:password], salt)
     args.first[:password] = password
 
     super(*args)
@@ -29,6 +29,6 @@ class User < ApplicationRecord
   end
 
   def authenticate(given_password)
-    BCrypt::Password.new(self.password) == self.salt + given_password
+    BCrypt::Engine.hash_secret(given_password, self.salt) == self.password
   end
 end
