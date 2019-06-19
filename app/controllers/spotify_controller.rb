@@ -11,8 +11,9 @@ class SpotifyController < ApplicationController
     @req = request.env['omniauth.auth']
     @playlists = @spotify_user.playlists
 
-    if session[:current_user].present?
-      session[:current_user].spotify_hash = @spotify_user
+    if current_user.present?
+      current_user.spotify_user = @spotify_user
+      current_user.save!
     end
   end
 

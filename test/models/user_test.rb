@@ -29,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
     @user = User.create(
       email: "Test@test.com",
       password: @password,
-      spotify_hash: spu_user)
+      spotify_user: spu_user)
   end
 
   test "should salt passwords" do
@@ -54,7 +54,4 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "testokenid",       spu.credentials["token"]
     assert_equal "TestBoi@test.com", spu.email
   end
-
-  # TODO 6.19.2019: Add spotify hash tests once the change is made
-
 end
