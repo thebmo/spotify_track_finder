@@ -18,6 +18,7 @@ class SpotifyController < ApplicationController
   end
 
   def user_playlists
+    @user_playlists = current_user.playlists
   end
 
   def playlist
