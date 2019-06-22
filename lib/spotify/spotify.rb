@@ -37,8 +37,12 @@ module Spotify::Spotify
   def add_tracks_to_playlist(tracks, playlist)
   end
 
+  # updates a user objects spotify hash with a new acces token
+  # @param user [ActiveRecord::User]
+  # @return [Boolean] true if user is saved, false otherwise
   def re_auth_user!(user)
     raise ArgumentError("User must be an active record model, not spotify user") if !user.is_a?(User)
+
     spotify_user = user.spotify_user
     refresh_token = spotify_user.credentials["refresh_token"]
     spotify_user.credentials["token"] = refresh_access_token(refresh_token)
@@ -49,6 +53,9 @@ module Spotify::Spotify
 
   private
 
+  # requests a refresh for users access token
+  # @param refresh_token [String] a users spotify refresh token
+  # @return [String] a users spotify access token
   def refresh_access_token(refresh_token)
     response = Faraday.post(
       'https://accounts.spotify.com/api/token',
