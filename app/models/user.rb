@@ -31,4 +31,21 @@ class User < ApplicationRecord
   def authenticate(given_password)
     BCrypt::Engine.hash_secret(given_password, self.salt) == self.password
   end
+
+  # INTERFACE
+  def playlists(limt: 20, offset: 0)
+    spotify_user.playlists(limit: limit, offeset: offset)
+  end
+
+  def create_playlist!(name, public: true)
+    spotify_user.create_playist(name, public: public)
+  end
+
+  def recently_played(limit: 20)
+    spotify_user.recently_played(limit: limit)
+  end
+
+  def saved_tracks(limit: 20, offset: 0)
+    spotify_user.saved_tracks(limit: limit, offset: offset)
+  end
 end
