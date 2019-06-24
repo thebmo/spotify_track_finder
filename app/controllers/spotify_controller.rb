@@ -13,6 +13,7 @@ class SpotifyController < ApplicationController
 
     if current_user.present?
       current_user.spotify_user = @spotify_user
+      current_user.activated = true
       current_user.save!
     end
   end
