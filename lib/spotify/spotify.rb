@@ -46,6 +46,7 @@ module Spotify::Spotify
     spotify_user = user.spotify_user
     refresh_token = spotify_user.credentials["refresh_token"]
     spotify_user.credentials["token"] = refresh_access_token(refresh_token)
+    spotify_user.credentials["expires_at"] = time.now.to_i + 3600
     user.spotify_user = spotify_user
 
     user.save!
