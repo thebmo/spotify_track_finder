@@ -9,12 +9,15 @@ class SpotifyController < ApplicationController
   def callback
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @req = request.env['omniauth.auth']
-    @playlists = @spotify_user.playlists
 
     if current_user.present?
       current_user.spotify_user = @spotify_user
       current_user.activated = true
       current_user.save!
+
+      @playlists = current_uesr.playlists
+    else
+      @playlists = @spotify_user.playlists
     end
   end
 
