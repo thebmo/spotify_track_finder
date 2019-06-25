@@ -54,6 +54,11 @@ class User < ApplicationRecord
 
   private
 
+  # delagates the passed in method and arguments to spotify
+  # user model whil forcing up to 3 retries of re authentication
+  #
+  # @param method [Symbol] the method we want to execute
+  # @param args [Array] positional, then keyword argmuments of the parent method.
   def retry_for_user(method, args)
     i = 0
     begin
