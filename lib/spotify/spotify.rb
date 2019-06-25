@@ -2,8 +2,8 @@
 require 'rspotify'
 
 module Spotify::Spotify
+  # SCOPES: see "config/initializers/omniauth.rb"
   REGION = "US".freeze
-  SCOPES = 'user-read-private user-read-email playlist-modify-public playlist-modify-private'.freeze
   LIMIT  = 50.freeze
 
   CLIENT_ID = ENV['SPOTIFY_CLIENT_ID'].freeze
@@ -55,6 +55,7 @@ module Spotify::Spotify
   private
 
   # requests a refresh for users access token
+  #
   # @param refresh_token [String] a users spotify refresh token
   # @return [String] a users spotify access token
   def refresh_access_token(refresh_token)
