@@ -60,12 +60,14 @@ class User < ApplicationRecord
   # @param method [Symbol] the method we want to execute
   # @param args [Array] positional, then keyword argmuments of the parent method.
   def retry_for_user(method, args)
-    i = 0
+    attempt = 0
+    max_retries = 3
+
     begin
       spotify_user.send(method, *args)
     rescue => e
-      if e.message.match?(/bad request/i) && i < 3
-        i+=1
+      if e.message.match?(/bad request/i) && attempt < max_retries
+        attempt+=1
 
         re_auth_user!(self)
 
