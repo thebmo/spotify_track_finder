@@ -6,8 +6,9 @@ class CreateArtists < ActiveRecord::Migration[5.2]
       t.json :artist_hash
 
       t.timestamps
-      add_index :artists, :remote_id, unique: true
-      add_index :artists, :name unique: true
     end
+
+    add_index :artists, :remote_id, unique: true
+    add_index :artists, :name, unique: true
   end
 end
