@@ -2,6 +2,8 @@ class Artist < ApplicationRecord
 
   # @param spotify_artist [RSpotify::Artist] an artist object
   def initialize(spotify_artist)
+    validate_spotify_artist!(spotify_artist)
+
     remote_id = spotify_artist.id
     name = spotify_artist.name
     artist_hash = jsonify_artist(spotify_artist)
@@ -17,6 +19,8 @@ class Artist < ApplicationRecord
   #
   # @param spotify_artist [RSpotify::Artist] an artist object
   def jsonify_artist(spotify_artist)
+    validate_spotify_artist!(spotify_artist)
+
     h = {}
     spotify_artist.instance_variables.each do |var|
       h[var] = spotify_artist.instance_variable_get(var)
@@ -33,5 +37,16 @@ class Artist < ApplicationRecord
     end
 
     artist
+  end
+
+  private
+
+  # Raises an ArgumentError if not a RSpotify::Artist object
+  #
+  # @param spotify_artist [RSpotify::Artist] an artist object
+  def validate_spotify_artist!(spotify_artist)
+    if !spotify_artist || !spotify_artist.is_a?(RSpotify::Artist)
+      raise ArgumentError.new("spotify_artist most be a RSpotiffy::Artist object")
+    end
   end
 end
