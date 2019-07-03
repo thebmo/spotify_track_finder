@@ -46,7 +46,7 @@ class Artist < ApplicationRecord
   # @param spotify_artist [RSpotify::Artist] an artist object
   def validate_spotify_artist!(spotify_artist)
     if !spotify_artist || !spotify_artist.is_a?(RSpotify::Artist)
-      raise ArgumentError.new("spotify_artist most be a RSpotiffy::Artist object")
+      raise ArgumentError.new("spotify_artist most be a RSpotify::Artist object")
     end
   end
 end
