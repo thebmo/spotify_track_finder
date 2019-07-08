@@ -2,32 +2,25 @@ class FollowedArtist < ApplicationRecord
 
   # @param artist [Artist] an artist object
   # @param user [User] a user object
-  def initialize(artist)
-    validate_artist!(artist)
+  def initialize(artist, user)
+    validate_argument!(artist, Artist)
+    validate_argument!(user, User)
 
-    # TODO 7.3.2019: DRY THIS UP
-    if !user || !user.is_a?(User)
-      raise ArgumentError.new("user must be provided")
-    end
-
-    # TODO 7.3.2019 clean this shit up
-    artist_remote_id = artist.remote_id
-    user_id = user.id
-    artist_id = artist.id
-    artist_name = artist.name
     super(
-      artist_remote_id: artist_remote_id,
-      user_id: user_id
-      artist_name: artist_name,
-      artist_id: artist_id)
+      artist_remote_id: artist.remote_id,
+      user_id: user.id
+      artist_name: artist.name,
+      artist_id: artist.id)
   end
+
+  private
 
   # Raises an ArgumentError if not a RSpotify::Artist object
   #
-  # @param artist [Artist] an artist object
-  def validate_artist!(artist)
-    if !artist || !artist.is_a?(Artist)
-      raise ArgumentError.new("artist most be an Artist object")
+  # @param argument [Object] an artist object or a user object
+  def validate_argument!(argument, klass)
+    if !argument || !argument.is_a?(klass)
+      raise ArgumentError.new("#{argument.class} given but #{klass} is needed.")
     end
   end
 end
