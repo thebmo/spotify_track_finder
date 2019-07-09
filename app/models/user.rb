@@ -43,7 +43,7 @@ class User < ApplicationRecord
   def follow_artist!(spotify_artist)
     artist = Artist.find_by(:remote_id => spotify_artist.id) || Artist.create(spotify_artist)
     followed_artist = FollowedArtist.find_by(:user_id => self.id, :artist_id => artist.id)
-    followed_artist ||= FollowedArtist.create(artist)
+    followed_artist ||= FollowedArtist.create_from_objects(artist, self)
   end
 
   def unfollow_artist!(spotify_artist)
