@@ -34,6 +34,25 @@ class User < ApplicationRecord
     BCrypt::Engine.hash_secret(given_password, self.salt) == self.password
   end
 
+  # FOLLOW METHODS
+  # FINSIH THIS WHERE CLAUSE
+  def followed_artists
+    @followed_artists ||= FollowedArtist.where(:user_id => self.id)
+  end
+
+  def follow_artist!(spotify_artist)
+    artist = Artist.find_by(:remote_id => spotify_artist.id) || Artist.create(spotify_artist)
+    followed_artist = FollowedArtist.find_by(:user_id => self.id, :artist_id => artist.id)
+    followed_artist ||= FollowedArtist.create_from_objects(artist, self)
+  end
+
+  def unfollow_artist!(spotify_artist)
+    followed_artist = FollowedArtist.find_by(:user_id => self.id, :artist_id => artist.id)
+     @followed_artists.delete(followed_artist) if followed_artist
+    followed_artist.destroy
+  end
+
+
   # INTERFACE METHODS
 
   def playlists(limit: 20, offset: 0)

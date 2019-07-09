@@ -4,6 +4,7 @@ class Artist < ApplicationRecord
   def initialize(spotify_artist)
     validate_spotify_artist!(spotify_artist)
 
+    # TODO 7.3.2019: Dry this up comon man
     remote_id = spotify_artist.id
     name = spotify_artist.name
     artist_hash = jsonify_artist(spotify_artist)
@@ -46,7 +47,7 @@ class Artist < ApplicationRecord
   # @param spotify_artist [RSpotify::Artist] an artist object
   def validate_spotify_artist!(spotify_artist)
     if !spotify_artist || !spotify_artist.is_a?(RSpotify::Artist)
-      raise ArgumentError.new("spotify_artist most be a RSpotiffy::Artist object")
+      raise ArgumentError.new("spotify_artist most be a RSpotify::Artist object")
     end
   end
 end

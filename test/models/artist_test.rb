@@ -7,7 +7,7 @@ class ArtistTest < ActiveSupport::TestCase
 
   test "should throw an error when not a spotify artist" do
     e = assert_raises(Exception) { Artist.new() }
-    assert_equal "spotify_artist most be a RSpotiffy::Artist object", e.message
+    assert_equal "spotify_artist most be a RSpotify::Artist object", e.message
   end
 
   test "should create and persist a new model whith a spotify artist" do
@@ -27,7 +27,7 @@ class ArtistTest < ActiveSupport::TestCase
   # serialize
   test "jsonify_artist should throw an error when arument is not a spotify artist" do
     e = assert_raises(Exception) { @arcade_fire.jsonify_artist("this will fail") }
-    assert_equal "spotify_artist most be a RSpotiffy::Artist object", e.message
+    assert_equal "spotify_artist most be a RSpotify::Artist object", e.message
   end
 
   test "jsonify_artist should return a json string of of the spotify artist" do
