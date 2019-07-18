@@ -4,11 +4,9 @@ class Artist < ApplicationRecord
   def initialize(spotify_artist)
     validate_spotify_artist!(spotify_artist)
 
-    # TODO 7.3.2019: Dry this up comon man
-    remote_id = spotify_artist.id
-    name = spotify_artist.name
-    artist_hash = jsonify_artist(spotify_artist)
-    super(remote_id: remote_id, name: name, artist_hash: artist_hash)
+    super(remote_id: spotify_artist.id,
+          name: spotify_artist.name,
+          artist_hash: jsonify_artist(spotify_artist))
   end
 
   # @returns an [RSpotify::Artist] object
