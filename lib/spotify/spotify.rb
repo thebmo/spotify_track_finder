@@ -24,8 +24,11 @@ module Spotify::Spotify
     all_tracks = []
 
     all_albums.each do |album|
+      # skip compilation albums
+      next if album.artists.map(&:name).include?("Various Artists")
       all_tracks += resources_for_object(album, :tracks)
     end
+
     return all_tracks
   end
 
